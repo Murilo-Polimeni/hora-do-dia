@@ -1,0 +1,48 @@
+body {
+  background-color: rgb(34, 34, 34);
+  color: white;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+header h1 {
+  font-size: 5em;
+
+  text-shadow: black 2px 2px;
+}
+
+.container {
+  background-color: rgb(20, 197, 197);
+  border: 1px solid black;
+  border-radius: 30px;
+
+  width: 40em;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+footer {
+  font-size: 2em;
+  text-shadow: black 2px 2px;
+}
+
+.res {
+  font-size: 2em;
+  margin-top: 1em;
+}
+
+.container-img {
+  width: 25em;
+  height: 25em;
+  margin-top: 3em;
+  border-radius: 50%;
+  overflow: hidden; /*Recortar a imagem */
+}
+
+.container-img img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
