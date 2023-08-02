@@ -1,52 +1,60 @@
 function carregar() {
-  const container = document.querySelector("div.container-img")
-  const agora = new Date()
-  const hora = agora.getHours()
-  const res = document.querySelector("div.res")
-  inserirTexto(hora, res)
-  const img = document.createElement("img")
-  img.src = getImageUrl(hora)
-  // img.classList.add("imagem-hora") Adicionar uma class
-  container.appendChild(img)
-  trocarCorFundo(hora)
-}
+  const hora = pegarHora();
 
-function inserirTexto(hora, res) {
-  let texto = ""
   if (hora > 6 && hora < 12) {
-    texto += "Bom Dia !"
+    modificarHTML(
+      "rgb(253 195 125)",
+      "rgb(74 75 75)",
+      "Bom dia!",
+      "https://i.pinimg.com/736x/8e/81/e7/8e81e795b09eebe6d76313105fa0d32d.jpg",
+      hora
+    );
   } else if (hora >= 12 && hora < 18) {
-    texto += "Boa Tarde !"
+    modificarHTML(
+      "#6262c5",
+      "black",
+      "Boa tarde!",
+      "https://clube-static.clubegazetadopovo.com.br/portal/wp-content/uploads/2020/04/materiasrepositorio1715-1522767873.jpeg",
+      hora
+    );
   } else {
-    texto += "Boa Noite !"
-  }
-  res.innerText = `Agora são ${hora} horas, ${texto} ` //+ texto
-}
-
-function getImageUrl(hora) {
-  if (hora > 6 && hora < 12) {
-    return "https://i.pinimg.com/736x/8e/81/e7/8e81e795b09eebe6d76313105fa0d32d.jpg"
-  } else if (hora >= 12 && hora < 18) {
-    return "https://clube-static.clubegazetadopovo.com.br/portal/wp-content/uploads/2020/04/materiasrepositorio1715-1522767873.jpeg"
-  } else {
-    return "https://www.teusonhar.com.br/wp-content/uploads/2015/03/sonhar-com-noite.jpg"
+    modificarHTML(
+      "black",
+      "rgb(73 73 73)",
+      "Boa noite!",
+      "https://www.teusonhar.com.br/wp-content/uploads/2015/03/sonhar-com-noite.jpg",
+      hora
+    );
   }
 }
 
-function trocarCorFundo(hora) {
-  let cor = ""
-  let corContainer = ""
-  if (hora > 6 && hora < 12) {
-    cor = "rgb(253 195 125)"
-    corContainer = "rgb(74 75 75)"
-  } else if (hora >= 12 && hora < 18) {
-    cor = "#6262c5"
-    corContainer = "black"
-  } else {
-    cor = "black"
-    corContainer = "rgb(73 73 73)"
-  }
-  document.body.style.backgroundColor = cor
+function pegarHora() {
+  const agora = new Date();
+  const hora = agora.getHours();
+  return hora;
+}
+
+function modificarHTML(corFundo, corContainer, texto, urlImagem, hora) {
+  modificarTexto(hora, texto);
+  criarImagem(urlImagem);
+  alterarCores(corFundo, corContainer);
+}
+
+function alterarCores(corFundo, corContainer) {
+  document.body.style.backgroundColor = corFundo;
   document.querySelector("section.container").style.backgroundColor =
-    corContainer
+    corContainer;
+}
+
+function modificarTexto(hora, texto) {
+  const res = document.querySelector("div.res");
+  res.innerText = `Agora são ${hora} horas, ${texto} `;
+}
+
+function criarImagem(urlImagem) {
+  const container = document.querySelector("div.container-img");
+  const img = document.createElement("img");
+  img.src = urlImagem;
+  // img.classList.add("imagem-hora") Adicionar uma class
+  container.appendChild(img);
 }
